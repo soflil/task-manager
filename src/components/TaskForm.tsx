@@ -1,6 +1,9 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { MdDelete } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 import "./TaskForm.css";
 
 const schema = z.object({
@@ -10,6 +13,8 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const TaskForm = () => {
+  const [tasks, setTasks] = useState<string[]>([]);
+
   const {
     register,
     handleSubmit,
@@ -17,7 +22,7 @@ const TaskForm = () => {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = (data: FieldValues) => {
-    return console.log(data);
+    setTasks([...tasks, data.item]);
   };
 
   return (
@@ -39,6 +44,20 @@ const TaskForm = () => {
         </div>
         {errors.item && <p className="error-message">{errors.item.message}</p>}
       </form>
+
+      <ul className="list-ul list-group">
+        {tasks.map((task, index) => (
+          <li key={index} className="task-li list-group-item">
+            {task}
+            <span className="icon icon-single">
+              <MdDelete />
+            </span>
+            <span className="icon icon-single">
+              <FaCheck />
+            </span>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
