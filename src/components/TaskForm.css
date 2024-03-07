@@ -25,6 +25,30 @@
   font-weight: bold;
 }
 
+.task-ul {
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+  list-style: none;
+  width: 100%;
+  font-size: 18px;
+}
+
+.task-li {
+  padding: 10px 30px;
+  font-weight: bold;
+}
+
+.icon {
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+}
+
+.icon-single {
+  margin-right: 20px;
+}
+
 @media (max-width: 800px) {
   .form-input {
     font-size: 16px;
@@ -33,5 +57,14 @@
 
   .add-btn {
     font-size: 16px;
+  }
+
+  .task-ul {
+    font-size: 16px;
+    margin: 90px 0;
+  }
+
+  .icon {
+    font-size: 20px;
   }
 }
