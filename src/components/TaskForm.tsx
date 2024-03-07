@@ -3,7 +3,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./TaskForm.css";
 
-const schema = z.object({ item: z.string().min(1) });
+const schema = z.object({
+  item: z.string().min(1, { message: "Task needs to be at least 1 carachter" }),
+});
 
 type FormData = z.infer<typeof schema>;
 
@@ -35,9 +37,7 @@ const TaskForm = () => {
             Add
           </button>
         </div>
-        {errors.item?.type === "required" && (
-          <p className="error-message">Needs to be at least one caracter</p>
-        )}
+        {errors.item && <p className="error-message">{errors.item.message}</p>}
       </form>
     </>
   );
