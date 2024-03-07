@@ -1,4 +1,5 @@
 import TaskForm from "./components/TaskForm";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   return (
