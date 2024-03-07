@@ -1,7 +1,10 @@
+import TaskForm from "./components/TaskForm";
+
 function App() {
   return (
     <>
-      <h1>Hello World</h1>
+      <h1>Task Manager</h1>
+      <TaskForm />
     </>
   );
 }
