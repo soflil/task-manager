@@ -1,16 +1,18 @@
 import { FieldValues, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import "./TaskForm.css";
 
-interface FormData {
-  item: string;
-}
+const schema = z.object({ item: z.string().min(1) });
+
+type FormData = z.infer<typeof schema>;
 
 const TaskForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const onSubmit = (data: FieldValues) => {
     return console.log(data);
@@ -27,6 +29,7 @@ const TaskForm = () => {
             id="item"
             placeholder="Add item here..."
             autoComplete="off"
+            autoFocus={true}
           />
           <button type="submit" className="btn btn-primary add-btn">
             Add
